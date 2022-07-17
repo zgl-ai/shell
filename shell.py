@@ -13,3 +13,4 @@ while True:
     #touch xxx.txt:创建一个txt文件
     #vim xxx.txt：编辑,往里面写东西
     #cat xxx.txt:输出文件里面的东西
+    #####
