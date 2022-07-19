@@ -1,4 +1,3 @@
-#todo:文件名后缀
 import os
 
 
@@ -12,30 +11,25 @@ def start():
             print()
 
         elif cl[0] == 'cd':
-            b = []
-            b = os.getcwd()#todo：变量没有被使用
-            if cl[1] in os.listdir(os.getcwd()):#todo：使用os.path.exist来判断路径是否存在
+            if os.path.exists(cl[1]):
                 os.chdir(cl[1])
-
             else:
-                print('file not found')
+                print("file doesn't exist")
 
         if cl[0] == 'touch':
-            open(cl[1], 'x')
-
+            a = open(cl[1], 'x')
+            a.close()
         elif cl[0] == 'vim':
-            #todo:文件路径不具有通用性，在别人机器上运行会出现bug，应该是使用当前路径加上文件名
-            edit = os.open('/Users/jennywu/Documents/用所选项目新建的文件夹/' + cl[1], os.O_RDWR)
-            while True:
-                a = input('$')
-                if a == 'q':
-                    break
-                os.write(edit, bytes(a, 'UTF-8'))
-                os.close(edit)
+            with open(os.getcwd() + '/' + cl[1], 'a+') as edit:
+                while True:
+                    a = input(':')
+                    if a == 'q':
+                        break
+                    edit.write(a)
             print('success')
 
         elif cl[0] == 'cat':
-            a = '/Users/jennywu/Documents/用所选项目新建的文件夹/' + cl[1]
+            a = cl[1]
             print(open(a).read())
 
         elif cl[0] == 'quit':
