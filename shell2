@@ -1,3 +1,4 @@
+#todo:文件名后缀
 import os
 
 
@@ -12,8 +13,8 @@ def start():
 
         elif cl[0] == 'cd':
             b = []
-            b = os.getcwd()
-            if cl[1] in os.listdir(os.getcwd()):
+            b = os.getcwd()#todo：变量没有被使用
+            if cl[1] in os.listdir(os.getcwd()):#todo：使用os.path.exist来判断路径是否存在
                 os.chdir(cl[1])
 
             else:
@@ -23,13 +24,13 @@ def start():
             open(cl[1], 'x')
 
         elif cl[0] == 'vim':
+            #todo:文件路径不具有通用性，在别人机器上运行会出现bug，应该是使用当前路径加上文件名
             edit = os.open('/Users/jennywu/Documents/用所选项目新建的文件夹/' + cl[1], os.O_RDWR)
             while True:
                 a = input('$')
                 if a == 'q':
                     break
                 os.write(edit, bytes(a, 'UTF-8'))
-
                 os.close(edit)
             print('success')
 
@@ -39,7 +40,7 @@ def start():
 
         elif cl[0] == 'quit':
             quit()
-
+#todo:对于每一个part，尽量以函数的形式编写
 
 # cd xxxxxx
 # 文件名，有就直接进入，没有就返回错误
@@ -49,4 +50,6 @@ def start():
 # vim xxx.txt：编辑,往里面写东西
 # cat xxx.txt:输出文件里面的东西a
 start()
+
+
 
